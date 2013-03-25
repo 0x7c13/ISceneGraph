@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Liu.ISceneGraph;
+﻿using Liu.ISceneGraph;
 using Liu.SceneGraphCore;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CreateScene
 {
@@ -104,8 +103,23 @@ namespace CreateScene
                 optionString = System.Console.ReadLine();
             }
 
+            // output sceneGraph to Console
             root.Accept(printGraph);
 
+
+            // output log file
+            System.Windows.Forms.SaveFileDialog dialog = new System.Windows.Forms.SaveFileDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Stream stream = File.Open(dialog.FileName, FileMode.Create); 
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (stream)
+                { 
+                    formatter.Serialize(stream, root); 
+                } 
+            }
+
+            //System.Console.ReadLine();
         }
     }
 }
