@@ -1,36 +1,47 @@
-﻿using System;
+﻿//
+//  ReadScene
+//  CSE 4253
+//
+//  Description:
+//  A short program to read Scene Graph from a serialized log file.
+//  Deserialize and print it on the screen.
+//
+//  Created by Jiaqi Liu on Mar-25 2013.
+//  Copyright (c) 2013 Jiaqi Liu. All rights reserved.
+//
+
+
 using Liu.ISceneGraph;
 using Liu.SceneGraphCore;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ReadScene
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
 
+            System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Stream stream = File.Open(dialog.FileName, FileMode.Open);
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (stream)
+                {
+                    ISceneNode root = (ISceneNode)formatter.Deserialize(stream);
+                    IVisitor printGraph = new NameTypeVisitor();
+                    root.Accept(printGraph);
+                }
+            }
 
-            /*
-            ISceneNode root;
-            root = new GroupNode("Root");
-            IVisitor printGraph = new NameTypeVisitor();
-            root.Accept(printGraph);
-            ISceneNode node = new Cube("cube");
-            (root as GroupNode).AddChild(node);
-            node = new Cube("cube2");
-            (root as GroupNode).AddChild(node);
-            GroupNode snowman = new GroupNode("snowman");
-            (root as GroupNode).AddChild(snowman);
-            node = new Cube("Bottom");
-            snowman.AddChild(node);
-            node = new Cube("Middle");
-            snowman.AddChild(node);
-            node = new Cube("Top");
-            snowman.AddChild(node);
-            root.Accept(printGraph);
-            */
-
-            Console.Read();  // pause
+            // Pause
+            System.Console.Read();
         }
     }
 }

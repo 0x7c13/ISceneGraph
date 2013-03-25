@@ -1,4 +1,18 @@
-﻿using Liu.ISceneGraph;
+﻿//
+//  CreateScene
+//  CSE 4253
+//
+//  Description:
+//  A short program to read data from sonsole and create
+//  user defined Scene Graph. Serialize it and save it 
+//  on the disk, display the Scene Graph on the screen 
+//  at the same time.
+//
+//  Created by Jiaqi Liu on Mar-25 2013.
+//  Copyright (c) 2013 Jiaqi Liu. All rights reserved.
+//
+
+using Liu.ISceneGraph;
 using Liu.SceneGraphCore;
 using System;
 using System.Collections.Generic;
@@ -103,9 +117,6 @@ namespace CreateScene
                 optionString = System.Console.ReadLine();
             }
 
-            // output sceneGraph to Console
-            root.Accept(printGraph);
-
 
             // output log file
             System.Windows.Forms.SaveFileDialog dialog = new System.Windows.Forms.SaveFileDialog();
@@ -119,7 +130,11 @@ namespace CreateScene
                 } 
             }
 
-            //System.Console.ReadLine();
+            // output sceneGraph to Console
+            root.Accept(printGraph);
+
+            // pause
+            System.Console.ReadLine();
         }
     }
 }

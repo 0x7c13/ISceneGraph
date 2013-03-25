@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("ISceneGraph")]
-[assembly: AssemblyDescription("Created By Jiaqi Liu")]
+[assembly: AssemblyDescription("Created by Jiaqi Liu")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("The Ohio State University")]
 [assembly: AssemblyProduct("ISceneGraph")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
+[assembly: AssemblyCopyright("Copyright © Jiaqi Liu 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

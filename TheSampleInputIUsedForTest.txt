@@ -1,0 +1,19 @@
+Add
+Cube cube1 Root
+Add
+Building building1 Root
+Add
+IGroupNode scene1 Root
+Add
+Camera camera1 scene1
+Add
+Sphere sphere1 scene1
+Add
+IStateNode state1 Root
+Add
+IGroupNode scene2 scene1
+Add
+Cube cube2 scene2
+Add
+Camera camera2 scene2
+Exit

@@ -1,4 +1,12 @@
-﻿using Liu.ISceneGraph;
+﻿//
+//  CreateScene
+//  CSE 4253
+//
+//  Created by Jiaqi Liu on Mar-25 2013.
+//  Copyright (c) 2013 Jiaqi Liu. All rights reserved.
+//
+
+using Liu.ISceneGraph;
 
 namespace CreateScene
 {
@@ -24,15 +32,26 @@ namespace CreateScene
             this.Result = null;
             notFound = true;
 
-            // check for the root
-            this.CompareToTarget(root);
+            // search every node
+            dfs(name, root);
+        }
 
-            // check for it's children
-            foreach (ISceneNode tmpNode in (root as IGroupNode))
+        private void dfs(string name, ISceneNode root)
+        {
+            // return if it's nil
+            if (root == null) return;
+            if (root is IGroupNode)
             {
-                if (notFound)
+                // check for the root
+                this.CompareToTarget(root);
+
+                // check for it's children
+                foreach (ISceneNode tmpNode in (root as IGroupNode))
                 {
-                    this.CompareToTarget(tmpNode);
+                    if (notFound && tmpNode != null)
+                    {
+                        dfs(name, tmpNode);
+                    }
                 }
             }
         }
