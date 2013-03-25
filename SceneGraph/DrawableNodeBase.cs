@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace Liu.SceneGraphCore
 {
     [Serializable()]
-    abstract internal class DrawableNodeBase : IDrawableNode
+    abstract public class DrawableNodeBase : IDrawableNode
     {
         public void Accept(IVisitor visitor)
         {
@@ -29,7 +29,7 @@ namespace Liu.SceneGraphCore
     }
 
     [Serializable()]
-    internal class Cube : DrawableNodeBase
+    public class Cube : DrawableNodeBase
     {
         public override void Draw()
         {
@@ -43,7 +43,7 @@ namespace Liu.SceneGraphCore
     }
 
     [Serializable()]
-    internal class Sphere : DrawableNodeBase
+    public class Sphere : DrawableNodeBase
     {
         public override void Draw()
         {
@@ -57,7 +57,7 @@ namespace Liu.SceneGraphCore
     }
 
     [Serializable()]
-    internal class Building : DrawableNodeBase
+    public class Building : DrawableNodeBase
     {
         public override void Draw()
         {
@@ -71,7 +71,7 @@ namespace Liu.SceneGraphCore
     }
    
     [Serializable()]
-    internal class Terrain : DrawableNodeBase
+    public class Terrain : DrawableNodeBase
     {
         public override void Draw()
         {

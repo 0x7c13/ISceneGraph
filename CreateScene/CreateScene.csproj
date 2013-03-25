@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PrintVisitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchVisitor.cs" />
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\ISceneGraph\ISceneGraph.csproj">
       <Project>{31f08c04-469c-410d-ac7d-3e77aa351188}</Project>
       <Name>ISceneGraph</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SceneGraph\SceneGraph.csproj">
+      <Project>{453bf721-f480-4abf-bb5c-50ba10a1e7db}</Project>
+      <Name>SceneGraph</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

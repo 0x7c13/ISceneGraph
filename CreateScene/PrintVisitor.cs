@@ -1,52 +1,9 @@
 ﻿using Liu.ISceneGraph;
 
-namespace CreateScene
+namespace Liu.SceneGraphCore
 {
-    public class SearchVisitor : IVisitor
+    class PrintVisitor : IVisitor
     {
-        // private fields
-        private ISceneNode Result { get; set; }
-        private readonly string targetName;
-        bool notFound;
-
-        public static ISceneNode Find(string targetName, ISceneNode root)
-        {
-            // use a private constructor to achieve the Find method
-            SearchVisitor currentVisitor = new SearchVisitor(targetName, root);
-
-            return currentVisitor.Result;
-        }
-
-        private SearchVisitor(string name, ISceneNode root)
-        {
-            // fields init
-            this.targetName = name;
-            this.Result = null;
-            notFound = true;
-
-            // check for the root
-            this.CompareToTarget(root);
-
-            // check for it's children
-            foreach (ISceneNode tmpNode in (root as IGroupNode))
-            {
-                if (notFound)
-                {
-                    this.CompareToTarget(tmpNode);
-                }
-            }
-        }
-
-        private void CompareToTarget(ISceneNode node)
-        {
-            if (notFound && targetName == node.Name) 
-            { 
-                notFound = false;
-                this.Result = node;
-            }
-        }
-
-
         #region Member Variables
         string currentIndentation = "";
         string indentIncrement = " ";
@@ -55,7 +12,9 @@ namespace CreateScene
         public virtual void PreVisit(IDrawableNode drawable)
         {
             System.Console.WriteLine(currentIndentation
-            + "Drawable Name: " + drawable.Name);
+            + "A Drawable of type "
+            + drawable.GetType().ToString()
+            + " with name: " + drawable.Name);
             currentIndentation += indentIncrement;
         }
 
@@ -68,7 +27,9 @@ namespace CreateScene
         public virtual void PreVisit(ITransformNode transform)
         {
             System.Console.WriteLine(currentIndentation
-            + "Drawable Name: " + transform.Name);
+            + "A Drawable of type "
+            + transform.GetType().ToString()
+            + " with name: " + transform.Name);
             currentIndentation += indentIncrement;
         }
 
@@ -81,7 +42,9 @@ namespace CreateScene
         public virtual void PreVisit(IStateNode state)
         {
             System.Console.WriteLine(currentIndentation
-            + "Drawable Name: " + state.Name);
+            + "A Drawable of type "
+            + state.GetType().ToString()
+            + " with name: " + state.Name);
             currentIndentation += indentIncrement;
         }
 
@@ -94,7 +57,9 @@ namespace CreateScene
         public virtual void PreVisit(IGroupNode group)
         {
             System.Console.WriteLine(currentIndentation
-            + "Drawable Name: " + group.Name);
+            + "A Drawable of type "
+            + group.GetType().ToString()
+            + " with name: " + group.Name);
             currentIndentation += indentIncrement;
         }
 
@@ -103,5 +68,6 @@ namespace CreateScene
             currentIndentation = currentIndentation.Substring(0,
                 currentIndentation.Length - indentIncrement.Length);
         }
+
     }
 }
